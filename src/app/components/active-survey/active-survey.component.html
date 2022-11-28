@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+      <from [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">        
+          <label for="topic">Topic</label>
+          <input
+            type="text"
+            id="topic"
+            formControlName="topic"
+            class="form-control"
+            placeholder="Your Survey Topic"
+          >
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            formControlName="description"
+            class="form-control"
+            placeholder="Description of your survey"
+          >
+        </div>
+  
+        <div formArrayName="questions">
+          <div  
+            class="form-group"
+            *ngFor="let questionControl of getControl(); let i = index"
+          >
+          <h6>Q{{i+1}}</h6>
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+          <button 
+            class="btn btn-warning"
+            (click)="addQuestion()"
+          >Add a new question</button>
+        </div>
+        <input type="submit" value="FINISH" class="btn btn-primary" />
+        <button class="btn btn-danger" (click)="onCancel()">CANCEL</button>
+      </from>
+    </div>
+  </div>
