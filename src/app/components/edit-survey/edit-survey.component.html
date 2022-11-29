@@ -1,6 +1,7 @@
+
 <div class="container">
     <div class="row">
-      <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="editSurveyForm">
         <div class="form-group">        
           <label for="topic">Topic</label>
           <input
@@ -17,8 +18,8 @@
           <input
             type="text"
             id="description"
-            formControlName="description"
             class="form-control"
+            formControlName="description"
             placeholder="Description of your survey"
           >
         </div>
@@ -26,18 +27,16 @@
         <div formArrayName="questions">
           <div  
             class="form-group"
-            *ngFor="let questionControl of getControl(); let i = index"
+            *ngFor="let question of originalQuestions; let i = index"
           >
           <h6>Q{{i+1}}</h6>
-            <input type="text" class="form-control" [formControlName]="i">
+            <input type="text" [value]='originalQuestions[i].question' class="form-control" [formControlName]="i">
+            
+
           </div>
-          <button 
-            class="btn btn-warning"
-            (click)="addQuestion()"
-          >Add a new question</button>
         </div>
-        <input type="submit" value="FINISH" class="btn btn-primary">
+        <button class="btn btn-primary" (click)="onSubmit()">UPDATE</button>
         <button class="btn btn-danger" (click)="onCancel()">CANCEL</button>
-      </form>
+    </form>
     </div>
   </div>

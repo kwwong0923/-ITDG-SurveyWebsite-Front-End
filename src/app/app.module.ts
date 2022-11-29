@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './components/contact/contact.component';
+import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ContactComponent } from './components/contact/contact.component';
     ActiveSurveyComponent,
     HomeComponent,
     ContactComponent,
+    EditSurveyComponent,
   ],
   imports: [
     BrowserModule,

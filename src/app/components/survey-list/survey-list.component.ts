@@ -32,4 +32,8 @@ export class SurveyListComponent implements OnInit {
                         this.surveys = this.surveys.filter((s) => s.surveyId !== survey.surveyId)
                       });
   }
+
+  editSurvey(survey: Survey)
+  {
+  }
 }

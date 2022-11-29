@@ -7,8 +7,10 @@ import { Survey } from 'src/app/models/survey.model';
 })
 export class SurveyItemComponent implements OnInit {
 
+  
   @Input() survey!: Survey;
 
+  @Output() onEidtSurvey = new EventEmitter<Survey>();
   @Output() onDeleteSurvey = new EventEmitter<Survey>();
   constructor() { }
 
@@ -20,5 +22,10 @@ export class SurveyItemComponent implements OnInit {
     console.log("survey-item");
     console.log(survey);
     this.onDeleteSurvey.emit(survey);
+  }
+
+  onEdit(survey: Survey)
+  {
+    this.onEidtSurvey.emit(survey);
   }
 }

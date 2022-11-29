@@ -4,7 +4,7 @@
     <h5 class="card-title">{{survey.topic}}</h5>
     <p class="card-text">{{survey.description}}</p>
     <a href="#" class="btn btn-primary">Answer</a>
-    <a href="#" class="btn btn-warning">Edit</a>
+    <a class="btn btn-warning" routerLink="/editsurvey/{{survey.surveyId}}">Edit</a>
     <button class="btn btn-danger" (click)="onDelete(survey)">Delete</button>
   </div>
 </div>

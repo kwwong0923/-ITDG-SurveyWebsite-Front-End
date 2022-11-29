@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ActiveSurveyComponent } from './components/active-survey/active-survey.component';
 import { SurveyListComponent } from './components/survey-list/survey-list.component';
-
+import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
 import { AuthGuardService } from './services/authguard.serivce.service';
 
 const routes: Routes = 
@@ -18,6 +18,7 @@ const routes: Routes =
   {path:'contact',component: ContactComponent},
   {path:'activesurvey',component: ActiveSurveyComponent, canActivate: [AuthGuardService]},
   {path:'surveylist',component:SurveyListComponent},
+  {path:"editsurvey/:id", component: EditSurveyComponent},
   {path: '', component:HomeComponent}
 ];
 
