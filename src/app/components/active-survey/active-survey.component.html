@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-      <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="surveyForm">
         <div class="form-group">        
           <label for="topic">Topic</label>
           <input
@@ -36,7 +36,7 @@
             (click)="addQuestion()"
           >Add a new question</button>
         </div>
-        <input type="submit" value="FINISH" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">FINISH</button>
         <button class="btn btn-danger" (click)="onCancel()">CANCEL</button>
       </form>
     </div>

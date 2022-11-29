@@ -33,15 +33,13 @@ export class ApiSurveyService {
     return this.http.get<Survey>(this.url + "get-survey/" + id);
   }
 
-  postSurvey(newSurvey: Survey): Observable<Survey>
+  postSurvey(newSurvey: Survey)
   {
-    // let postSurveyUrl = this.http.post<Survey>(this.url + "post-survey", newSurvey, httpOptions);
-    let newPost = this.http.post<Survey>("localhost:3201/api/post-survey", newSurvey, httpOptions)
-    return newPost;
-    // console.log(newSurvey);
-    // let postSurveyUrl = this.http.post<Survey>(this.url + "post-survey", {surveyId: 123456, topic: "TRY!!!", description:"description", questions: [{index: 0, question: "Q1"}]}, httpOptions);
-    // console.log(postSurveyUrl);
-    // return postSurveyUrl;
+    this.http.post(this.url + "post-survey", newSurvey, httpOptions)
+              .subscribe((res)=>
+              {
+                console.log(res);
+              });    
   }
 
   putSurvey(editedSurvey: Survey)

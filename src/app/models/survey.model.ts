@@ -2,11 +2,7 @@ export interface Survey
 {
     topic: string,
     description: string,
-    questions: 
-        {
-            index: number,
-            question: string
-        }[],
+    questions: []
     
     surveyId: string
 }

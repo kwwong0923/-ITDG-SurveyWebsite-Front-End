@@ -10,20 +10,20 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./edit-survey.component.css']
 })
 export class EditSurveyComponent implements OnInit {
-  editSurveyForm = new FormGroup
-  (
-    {
-      topic: new FormControl(""),
-      description: new FormControl(""),
-      questions: new FormArray([])
-    }
-  )
-  
-                      
+  // editSurveyForm = new FormGroup
+  // (
+  //   {
+  //     topic: new FormControl(""),
+  //     description: new FormControl(""),
+  //     questions: new FormArray([])
+  //   }
+  // )
+  editSurveyForm!: FormGroup;          
   questions!: FormArray;
   editedSurvey!: Survey;
-  originalQuestions!: {index: number,question: string}[];
-
+  originalQuestions!: [];
+  originalSurveyId!: string;
+  i: number = 0;
   // editSurveyForm: FormGroup = new FormGroup
   // (
   //   {
@@ -54,42 +54,43 @@ export class EditSurveyComponent implements OnInit {
                         }
                       )
                       this.originalQuestions = result.questions;
-                      // this.originalQuestions = result.questions
-                      // this.originalQuestions = result.questions;
-                      // this.originalSurveyId = result.surveyId;
-                      // console.log(this.originalQuestions);
-                    });
-     
-                    
-    // this.editSurveyForm = new FormGroup
-    // (
-    //   {
-    //     topic: new FormControl(null, Validators.required),
-    //     description: new FormControl(null, Validators.required),
-    //     questions: new FormArray([]),
-    //   }
-    // );
-  }
 
-  onSubmit()
-  {
-    // console.log("HEY");
-    // this.editedSurvey = 
+                      this.originalSurveyId = result.surveyId;
+                    });  
+
+    // for(this.i = 0; this.i < this.originalQuestions.length; this.i++)
     // {
-    //   topic: this.editSurveyForm.value.topic,
-    //   description: this.editSurveyForm.value.description,
-    //   questions: this.editSurveyForm.value.questions,
-    //   surveyId: this.originalSurveyId
+    //   const control = new FormControl(this.originalQuestions[this.i], Validators.required);
+    //   (<FormArray>this.editSurveyForm.get("questions")).push(control, this.i);
     // }
-    // console.log(this.editedSurvey);
-    // this.apiService.putSurvey(this.editedSurvey);    
-  }
 
-  
+  };
+
   getControl()
   {
-    return (<FormArray>this.editSurveyForm.get("questions")).controls;
+     for(this.i = 0; this.i < this.originalQuestions.length; this.i++)
+    {
+      const control = new FormControl(null, Validators.required);
+      (<FormArray>this.editSurveyForm.get("questions")).push(control);
+    }
+
+    return this.originalQuestions;
   }
+  onSubmit()
+  {
+    console.log("HEY");
+    this.editedSurvey = 
+    {
+      topic: this.editSurveyForm.value.topic,
+      description: this.editSurveyForm.value.description,
+      questions: this.editSurveyForm.value.questions,
+      surveyId: this.originalSurveyId
+    }
+    console.log(this.editedSurvey);
+    this.apiService.putSurvey(this.editedSurvey);    
+  }
+
+
 
   onCancel()
   {
@@ -101,4 +102,6 @@ export class EditSurveyComponent implements OnInit {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.editSurveyForm.get("questions")).push(control);
   }
+
+  
 }
