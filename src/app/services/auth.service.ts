@@ -46,6 +46,7 @@ export class AuthService {
         localStorage.clear();
     }
 
+    // login
     public validate(username: string, password: string)
     {
         return this.http.post(this.url + "auth/login",{"username": username, "password": password}, httpOptions);
@@ -56,7 +57,8 @@ export class AuthService {
         return this.http.post(this.url + "auth/signup", httpOptions);
     }
 
-    public getUserInfo(): Observable<User> {
-        return this.http.get<User>(this.url + "auth/getUser", httpOptions)
-      }
+    public getUserInfo(): Observable<User> 
+    {
+        return this.http.get<User>(this.url + "auth/user", httpOptions)
+    }
 }
