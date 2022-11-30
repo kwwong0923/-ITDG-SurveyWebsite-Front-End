@@ -26,19 +26,16 @@ export class AuthService {
 
     public isAuthenticated(): Boolean
     {
-        let userData = localStorage.getItem("userInfo");
-
-        if(userData && JSON.parse(userData))
-        {
-            return true;
-        }
-
-        return false;
+        let userData = localStorage.getItem('userInfo')
+        console.log(userData);
+        
+        if (userData && JSON.parse(userData)) return true
+        return false
     }
 
-    public setUserInfo(user: any)
+    public setUserInfo(user: User)
     {
-        localStorage.setItem("useInfo", JSON.stringify(user));
+        localStorage.setItem("userInfo", JSON.stringify(user));
     }
 
     clearStorage()
@@ -49,7 +46,8 @@ export class AuthService {
     // login
     public validate(username: string, password: string)
     {
-        return this.http.post(this.url + "auth/login",{"username": username, "password": password}, httpOptions);
+        return this.http.post<User>(this.url + "auth/login",{"username": username, "password": password}, httpOptions);
+
     }
 
     public signupUser(newUser: User)
@@ -61,4 +59,8 @@ export class AuthService {
     {
         return this.http.get<User>(this.url + "auth/user", httpOptions)
     }
+
+    public logoutUser() {
+        return this.http.get(this.url + "auth/logout", httpOptions)
+      }
 }

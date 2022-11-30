@@ -54,7 +54,6 @@ export class EditSurveyComponent implements OnInit {
                         }
                       )
                       this.originalQuestions = result.questions;
-
                       this.originalSurveyId = result.surveyId;
                     });  
 
@@ -74,7 +73,7 @@ export class EditSurveyComponent implements OnInit {
       (<FormArray>this.editSurveyForm.get("questions")).push(control);
     }
 
-    return this.originalQuestions;
+    return (<FormArray>this.editSurveyForm.get("questions")).controls;
   }
   onSubmit()
   {

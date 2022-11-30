@@ -27,10 +27,10 @@
         <div formArrayName="questions">
           <div  
             class="form-group"
-            *ngFor="let question of getControl(); let i = index"
+            *ngFor="let question of originalQuestions; let i = index"
           >
           <h6>Q{{i+1}}</h6>
-            <input type="text" [value]='question' class="form-control" [formControlName]="i">
+            <input type="text" [value]='originalQuestions[i]' class="form-control" [formControlName]="i">
             
 
           </div>

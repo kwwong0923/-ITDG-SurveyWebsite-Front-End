@@ -23,12 +23,23 @@
             <li class="nav-item">
               <a class="nav-link mx-3" href="/surveylist"><i class="fa-solid fa-list"></i> Survey List</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link mx-3 "href="/login"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-3 "href="/signup"><i class="fa-solid fa-play"></i> Get Started</a>
-            </li>
+
+              <li class="nav-item" *ngIf="!logged">
+                <a class="nav-link mx-3 "href="/login"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Login</a>
+              </li>
+
+              <li class="nav-item" *ngIf="!logged">
+                <a class="nav-link mx-3 "href="/signup"><i class="fa-solid fa-play"></i> Get Started</a>
+              </li>
+
+              <li class="nav-item" *ngIf="logged">
+                <a class="nav-link mx-3 "href="/user"><i class="fa-solid fa-play"></i> User Info</a>
+              </li>
+
+              <li class="nav-item" *ngIf="logged">
+                <a class="nav-link mx-3 "href="" (click)="logout()"><i class="fa-solid fa-play" ></i> Log Out</a>
+              </li>
+            
             <li class="nav-item">
               <a class="nav-link mx-3 "href="/contact"><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
             </li>

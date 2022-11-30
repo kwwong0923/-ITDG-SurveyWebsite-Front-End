@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './components/contact/contact.component';
 import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { EditSurveyComponent } from './components/edit-survey/edit-survey.compon
     HomeComponent,
     ContactComponent,
     EditSurveyComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,

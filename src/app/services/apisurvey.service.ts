@@ -44,7 +44,11 @@ export class ApiSurveyService {
 
   putSurvey(editedSurvey: Survey)
   {
-    return this.http.put<Survey>(this.url + "edit-survey/" + editedSurvey.surveyId, editedSurvey);
+    return this.http.put<Survey>(this.url + "edit-survey/" + editedSurvey.surveyId, editedSurvey)
+                      .subscribe((res)=>
+                      {
+                        console.log(res);
+                      });    
   }
 
   deleteSurvey(survey: Survey): Observable<Survey>

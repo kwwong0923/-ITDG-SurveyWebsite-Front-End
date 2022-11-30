@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
 
+  @Output() loggedStatus = new EventEmitter<Boolean>();
   constructor
   (
     private authService: AuthService,
@@ -25,18 +26,20 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    console.log(this.username + " " + this.password);
+    console.log(this.username + "--- " + this.password);
     this.authService.validate(this.username, this.password)
-                      .subscribe((user) =>
+                      .subscribe((resUser) =>
                       {
-                        this.authService.setUserInfo(user);
-                        this.router.navigate(["home"])
+                        this.authService.setUserInfo(resUser);
+                        this.loggedStatus.emit(true);
+                        this.router.navigate(["activesurvey"])
                       },
                       (error) =>
                       {
                         console.log("Error of Login");
                         console.log(error);
                       })
+    
   };
 
   getUserInfo()
