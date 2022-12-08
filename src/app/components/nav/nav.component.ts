@@ -29,7 +29,7 @@ export class NavComponent implements OnInit{
 
   ngOnInit(): void
   {
-    // console.log(`this.logged : ${this.logged}`)
+    
   }
 
   logout()

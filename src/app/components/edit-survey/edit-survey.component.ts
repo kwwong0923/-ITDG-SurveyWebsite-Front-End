@@ -10,28 +10,12 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ['./edit-survey.component.css']
 })
 export class EditSurveyComponent implements OnInit {
-  // editSurveyForm = new FormGroup
-  // (
-  //   {
-  //     topic: new FormControl(""),
-  //     description: new FormControl(""),
-  //     questions: new FormArray([])
-  //   }
-  // )
+
   editSurveyForm!: FormGroup;
   questions!: FormArray;
   editedSurvey!: Survey;
   originalQuestions!: [];
   originalSurveyId!: string;
-  i: number = 0;
-  // editSurveyForm: FormGroup = new FormGroup
-  // (
-  //   {
-  //     topic: new FormControl(this.editedSurvey.topic, Validators.required),
-  //     description: new FormControl(this.editedSurvey.description, Validators.required),
-  //     questions: new FormArray([])
-  //   }
-  // )
 
   constructor
   (
@@ -43,7 +27,7 @@ export class EditSurveyComponent implements OnInit {
 
   ngOnInit(): void
   {
-    this.apiService.getEditSurvey(this.router.snapshot.params['id'])
+    this.apiService.getOneSurvey(this.router.snapshot.params['id'])
                     .subscribe((result) =>
                     {
                       let questions = result.questions;
@@ -63,13 +47,6 @@ export class EditSurveyComponent implements OnInit {
                       this.originalQuestions = result.questions;
                       this.originalSurveyId = result.surveyId;
                     });
-
-    // for(this.i = 0; this.i < this.originalQuestions.length; this.i++)
-    // {
-    //   const control = new FormControl(this.originalQuestions[this.i], Validators.required);
-    //   (<FormArray>this.editSurveyForm.get("questions")).push(control, this.i);
-    // }
-
   };
 
   getControl()
@@ -101,6 +78,4 @@ export class EditSurveyComponent implements OnInit {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.editSurveyForm.get("questions")).push(control);
   }
-
-
 }

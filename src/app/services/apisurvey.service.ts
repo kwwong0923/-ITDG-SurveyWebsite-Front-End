@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Survey } from '../models/survey.model';
+import { Answer } from '../models/answer.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,8 +28,8 @@ export class ApiSurveyService {
     console.log("getSurveys");
     return this.http.get<Survey[]>(this.url + "get-surveys");
   }
-  
-  getEditSurvey(id: string): Observable<Survey>
+
+  getOneSurvey(id: string): Observable<Survey>
   {
     return this.http.get<Survey>(this.url + "get-survey/" + id);
   }
@@ -39,7 +40,7 @@ export class ApiSurveyService {
               .subscribe((res)=>
               {
                 console.log(res);
-              });    
+              });
   }
 
   putSurvey(editedSurvey: Survey)
@@ -48,7 +49,7 @@ export class ApiSurveyService {
                       .subscribe((res)=>
                       {
                         console.log(res);
-                      });    
+                      });
   }
 
   deleteSurvey(survey: Survey): Observable<Survey>
@@ -56,4 +57,12 @@ export class ApiSurveyService {
     return this.http.delete<Survey>(this.url  + "delete-survey/" + survey.surveyId );
   }
 
+  postAnswer(answer: Answer)
+  {
+    this.http.post(this.url + "post-answer", answer, httpOptions)
+              .subscribe((res)=>
+              {
+                console.log(res);
+              });
+  }
 }

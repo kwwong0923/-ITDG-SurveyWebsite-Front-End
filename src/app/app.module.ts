@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './components/contact/contact.component';
 import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ContactComponent,
     EditSurveyComponent,
     UserInfoComponent,
+    SurveyAnswerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Survey } from 'src/app/models/survey.model';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-survey-item',
   templateUrl: './survey-item.component.html',
@@ -7,25 +9,27 @@ import { Survey } from 'src/app/models/survey.model';
 })
 export class SurveyItemComponent implements OnInit {
 
-  
+  logged: Boolean;
+
   @Input() survey!: Survey;
 
-  @Output() onEidtSurvey = new EventEmitter<Survey>();
   @Output() onDeleteSurvey = new EventEmitter<Survey>();
-  constructor() { }
+  constructor
+  (
+    private authService: AuthService
+  )
+  {
+    this.logged =  this.authService.getIsAuth();
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+
   }
 
   onDelete(survey: Survey)
   {
-    console.log("survey-item");
-    console.log(survey);
     this.onDeleteSurvey.emit(survey);
   }
 
-  onEdit(survey: Survey)
-  {
-    this.onEidtSurvey.emit(survey);
-  }
 }

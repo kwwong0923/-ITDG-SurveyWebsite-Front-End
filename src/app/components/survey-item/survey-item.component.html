@@ -1,10 +1,11 @@
-<div  class="card"  >
+<div class="card" >
   <div class="card-header">Survey</div>
   <div class="card-body">
     <h5 class="card-title">{{survey.topic}}</h5>
     <p class="card-text">{{survey.description}}</p>
-    <a href="#" class="btn btn-primary">Answer</a>
-    <a class="btn btn-warning" routerLink="/editsurvey/{{survey.surveyId}}">Edit</a>
-    <button class="btn btn-danger" (click)="onDelete(survey)">Delete</button>
+    <a class="btn btn-primary" routerLink="/answersurvey/{{survey.surveyId}}">Answer</a>
+    <a *ngIf="logged" class="btn btn-warning" routerLink="/editsurvey/{{survey.surveyId}}">Edit</a>
+    <button *ngIf="logged" class="btn btn-danger" (click)="onDelete(survey)">Delete</button>
+
   </div>
 </div>
