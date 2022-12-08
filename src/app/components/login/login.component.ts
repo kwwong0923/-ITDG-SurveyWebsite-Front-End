@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor
   (
     private authService: AuthService,
-    private router: Router   
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,27 +27,27 @@ export class LoginComponent implements OnInit {
   login()
   {
     console.log(this.username + "--- " + this.password);
-    this.authService.validate(this.username, this.password)
-                      .subscribe((resUser) =>
-                      {
-                        this.authService.setUserInfo(resUser);
-                        this.loggedStatus.emit(true);
-                        this.router.navigate(["activesurvey"])
-                      },
-                      (error) =>
-                      {
-                        console.log("Error of Login");
-                        console.log(error);
-                      })
-    
-  };
+    this.authService.validate(this.username, this.password);
+    this.router.navigate([""]);
+    // .subscribe((user) => {
+    //             this.authService.setUserInfo(user)
+    //                     this.loggedStatus.emit(true)
+    //                     this.router.navigate(["activesurvey"])
+    //                   },
+    //                   (error) =>
+    //                   {
+    //                     console.log("Error of Login");
+    //                     console.log(error);
+    //                   })
 
-  getUserInfo()
-  {
-    this.authService.getUserInfo()
-                      .subscribe((user) =>
-                      {
-                        return this.user = user;
-                      });
   };
+//*Removed this (Issue: Login & Register)
+  // getUserInfo()
+  // {
+  //   this.authService.getUserInfo()
+  //                     .subscribe((user) =>
+  //                     {
+  //                       return this.user = user;
+  //                     });
+  // };
 }

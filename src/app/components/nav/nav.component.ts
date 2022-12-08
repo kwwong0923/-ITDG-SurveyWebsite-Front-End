@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, AfterViewInit, Input } from '@angular/cor
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -11,36 +12,34 @@ export class NavComponent implements OnInit{
 
   // user: User = localStorage.getItem['userInfo'];
   logged: Boolean = false;
+  private authListenerSubs: Subscription;
+
   constructor
   (
     private authService: AuthService,
     private router: Router
-  ) 
+  )
   {
-    this.logged = this.authService.isAuthenticated()
-   }
+    this.authListenerSubs = this.authService
+    .getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.logged = isAuthenticated;
+    });
+  }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
-    this.logged = this.authService.isAuthenticated()
     // console.log(`this.logged : ${this.logged}`)
   }
 
-  ngOnChanges()
-  {
-    this.logged = this.authService.isAuthenticated()
-  }
-
-  ngAfterViewInit()
-  {
-    this.logged = this.authService.isAuthenticated()
-  }
   logout()
   {
-    this.authService.clearStorage()
-    this.authService.logoutUser()
-    this.router.navigate([''])
-    this.logged = this.authService.isAuthenticated();
-    console.log(this.logged);
+    this.authService.logoutUser();
   }
+
+  ngOnDestroy()
+  {
+    this.authListenerSubs.unsubscribe();
+  }
+
 }

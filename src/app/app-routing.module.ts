@@ -8,10 +8,10 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ActiveSurveyComponent } from './components/active-survey/active-survey.component';
 import { SurveyListComponent } from './components/survey-list/survey-list.component';
 import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
-import { AuthGuardService } from './services/authguard.serivce.service';
+import { AuthGuardService } from './services/authguard.serivce';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 
-const routes: Routes = 
+const routes: Routes =
 [
   {path:'home',component:HomeComponent},
   {path:'signup',component: SignupComponent},
