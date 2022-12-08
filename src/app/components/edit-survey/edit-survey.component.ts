@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormArray, Validators} from '@angular/forms';
 import { Survey } from 'src/app/models/survey.model';
 import { ApiSurveyService } from 'src/app/services/apisurvey.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-edit-survey',
@@ -18,7 +18,7 @@ export class EditSurveyComponent implements OnInit {
   //     questions: new FormArray([])
   //   }
   // )
-  editSurveyForm!: FormGroup;          
+  editSurveyForm!: FormGroup;
   questions!: FormArray;
   editedSurvey!: Survey;
   originalQuestions!: [];
@@ -36,15 +36,17 @@ export class EditSurveyComponent implements OnInit {
   constructor
   (
     private apiService: ApiSurveyService,
-    private router: ActivatedRoute
-  ) 
+    private router: ActivatedRoute,
+    private route : Router
+  )
   {}
 
-  ngOnInit(): void 
-  {    
+  ngOnInit(): void
+  {
     this.apiService.getEditSurvey(this.router.snapshot.params['id'])
-                    .subscribe((result) => 
+                    .subscribe((result) =>
                     {
+                      let questions = result.questions;
                       this.editSurveyForm = new FormGroup
                       (
                         {
@@ -53,9 +55,14 @@ export class EditSurveyComponent implements OnInit {
                           questions: new FormArray([])
                         }
                       )
+                      for (let i = 0; i < questions.length; i++)
+                      {
+                        const control = new FormControl(questions[i], Validators.required);
+                        (<FormArray>this.editSurveyForm.get("questions")).push(control);
+                      }
                       this.originalQuestions = result.questions;
                       this.originalSurveyId = result.surveyId;
-                    });  
+                    });
 
     // for(this.i = 0; this.i < this.originalQuestions.length; this.i++)
     // {
@@ -67,18 +74,12 @@ export class EditSurveyComponent implements OnInit {
 
   getControl()
   {
-     for(this.i = 0; this.i < this.originalQuestions.length; this.i++)
-    {
-      const control = new FormControl(null, Validators.required);
-      (<FormArray>this.editSurveyForm.get("questions")).push(control);
-    }
-
     return (<FormArray>this.editSurveyForm.get("questions")).controls;
   }
+
   onSubmit()
   {
-    console.log("HEY");
-    this.editedSurvey = 
+    this.editedSurvey =
     {
       topic: this.editSurveyForm.value.topic,
       description: this.editSurveyForm.value.description,
@@ -86,10 +87,9 @@ export class EditSurveyComponent implements OnInit {
       surveyId: this.originalSurveyId
     }
     console.log(this.editedSurvey);
-    this.apiService.putSurvey(this.editedSurvey);    
+    this.apiService.putSurvey(this.editedSurvey);
+    this.route.navigate(["surveylist"]);
   }
-
-
 
   onCancel()
   {
@@ -102,5 +102,5 @@ export class EditSurveyComponent implements OnInit {
     (<FormArray>this.editSurveyForm.get("questions")).push(control);
   }
 
-  
+
 }

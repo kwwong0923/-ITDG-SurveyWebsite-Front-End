@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormArray, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { Survey } from 'src/app/models/survey.model';
 import { ApiSurveyService } from 'src/app/services/apisurvey.service';
 
@@ -15,10 +16,11 @@ export class ActiveSurveyComponent implements OnInit {
 
   constructor
   (
-    private apiService: ApiSurveyService
+    private apiService: ApiSurveyService,
+    private router : Router
   ) { }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.surveyForm = new FormGroup
     (
@@ -32,7 +34,7 @@ export class ActiveSurveyComponent implements OnInit {
 
   onSubmit()
   {
-    this.newSurvey = 
+    this.newSurvey =
     {
       topic: this.surveyForm.value.topic,
       description: this.surveyForm.value.description,
@@ -41,7 +43,8 @@ export class ActiveSurveyComponent implements OnInit {
     }
     console.log("onSubmit");
     console.log(this.newSurvey);
-    this.apiService.postSurvey(this.newSurvey);    
+    this.apiService.postSurvey(this.newSurvey);
+    this.router.navigate(["surveylist"]);
   }
 
   addQuestion()
