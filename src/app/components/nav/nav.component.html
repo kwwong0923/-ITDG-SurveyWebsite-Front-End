@@ -36,20 +36,25 @@
                 <a class="nav-link mx-3 "routerLink="/statistics" ><i class="fa-solid fa-chart-simple" ></i>Statistics</a>
               </li>
 
-              <li class="nav-item" *ngIf="logged">
-                <a class="nav-link mx-3 "routerLink="/user"><i class="fa-solid fa-user"></i> User Info</a>
-              </li>
-
-              <li class="nav-item" *ngIf="logged">
-                <a class="nav-link mx-3 "routerLink="" (click)="logout()"><i class="fa-solid fa-xmark" ></i> Log Out</a>
-              </li>
-
             <li class="nav-item">
               <a class="nav-link mx-3 "routerLink="/contact"><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" routerLink="/activesurvey"><i class="fa-solid fa-house-user"></i> Active Survey</a>
             </li>
+
+            <li class="nav-item" *ngIf="logged">
+              <p class="nav-link mx-3 "routerLink="/contact"><i class="fa-brands fa-whatsapp"></i></p>
+            </li>
+
+            <li class="nav-item" *ngIf="logged">
+              <a class="nav-link mx-3 "routerLink="/user"><i class="fa-solid fa-user"></i>Welcome, {{displayName}}</a>
+            </li>
+
+            <li class="nav-item" *ngIf="logged">
+              <a class="nav-link mx-3 "routerLink="" (click)="logout()"><i class="fa-solid fa-xmark" ></i> Log Out</a>
+            </li>
+
           </ul>
           </div>
         </div>

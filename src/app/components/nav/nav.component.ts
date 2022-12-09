@@ -13,6 +13,7 @@ export class NavComponent implements OnInit{
   // user: User = localStorage.getItem['userInfo'];
   logged: Boolean = false;
   private authListenerSubs: Subscription;
+  displayName!: string | null;
 
   constructor
   (
@@ -25,11 +26,12 @@ export class NavComponent implements OnInit{
     .subscribe(isAuthenticated => {
       this.logged = isAuthenticated;
     });
+    this.displayName = localStorage.getItem("displayName");
   }
 
   ngOnInit(): void
   {
-    
+
   }
 
   logout()
