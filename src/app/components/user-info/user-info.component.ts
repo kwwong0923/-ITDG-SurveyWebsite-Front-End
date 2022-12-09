@@ -9,10 +9,13 @@ export class UserInfoComponent implements OnInit {
 
   constructor() { }
 
-  user!: User;
-  userInfo!: String;
+  username: string | null = "";
+  email: string | null = "";
+  displayName: string | null = "";
   ngOnInit(): void {
-
+    this.username = localStorage.getItem("username");
+    this.email = localStorage.getItem("email");
+    this.displayName = localStorage.getItem("displayName");
   }
 
 }

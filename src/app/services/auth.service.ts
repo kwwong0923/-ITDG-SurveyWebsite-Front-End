@@ -18,12 +18,13 @@ const httpOptions = {
 })
 export class AuthService {
 
-    private authStatusListener = new Subject<boolean>();
+  private authStatusListener = new Subject<boolean>();
 
   private url = "http://localhost:3201/api/auth";
 
   logged: boolean = false;
-
+    token!: string;
+    user!: User;
     constructor
     (
         private http: HttpClient
@@ -72,14 +73,33 @@ export class AuthService {
     public validate(username: string, password: string)
     {
         //*Removed the post <User> here (Issue: Login & Register)
-        return this.http.post(this.url + "/login",{"username": username, "password": password}, httpOptions)
+        return this.http.post<{token: string, user: User}>(this.url + "/login",{"username": username, "password": password}, httpOptions)
                     .subscribe((response) =>
                     {
-                        console.log(response);
+                        this.token = response.token;
+                        this.user = response.user;
                         this.logged = true;
-                        this.authStatusListener.next(true)
+                        this.authStatusListener.next(true);
+                        this.saveAuthData(this.token, this.user);
                     });
 
+    }
+
+    private saveAuthData(token: string, user: User)
+    {
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("displayName", user.displayName);
+        localStorage.setItem("email", user.email);
+
+    }
+
+    private clearAuthData()
+    {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("displayName");
+        localStorage.removeItem("email");
     }
 
     //register
@@ -95,9 +115,11 @@ export class AuthService {
         return this.http.get<User>(this.url + "/user", httpOptions)
     }
 
-    public logoutUser() {
+    public logoutUser()
+    {
         this.logged = false;
         this.authStatusListener.next(false);
+        this.clearAuthData();
         return this.http.get(this.url + "/logout", httpOptions)
-      }
+    }
 }
