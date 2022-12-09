@@ -2,8 +2,8 @@ export interface Survey
 {
     topic: string,
     description: string,
-    questions: []
-    
-    surveyId: string
+    questions: [],
+    surveyId: string,
+    answered: boolean
 }
 

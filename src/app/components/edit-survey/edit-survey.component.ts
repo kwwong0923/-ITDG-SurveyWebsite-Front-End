@@ -16,7 +16,7 @@ export class EditSurveyComponent implements OnInit {
   editedSurvey!: Survey;
   originalQuestions!: [];
   originalSurveyId!: string;
-
+  answered = false;
   constructor
   (
     private apiService: ApiSurveyService,
@@ -30,6 +30,7 @@ export class EditSurveyComponent implements OnInit {
     this.apiService.getOneSurvey(this.router.snapshot.params['id'])
                     .subscribe((result) =>
                     {
+                      this.answered = result.answered;
                       let questions = result.questions;
                       this.editSurveyForm = new FormGroup
                       (
@@ -61,11 +62,12 @@ export class EditSurveyComponent implements OnInit {
       topic: this.editSurveyForm.value.topic,
       description: this.editSurveyForm.value.description,
       questions: this.editSurveyForm.value.questions,
-      surveyId: this.originalSurveyId
+      surveyId: this.originalSurveyId,
+      answered: false,
     }
     console.log(this.editedSurvey);
     this.apiService.putSurvey(this.editedSurvey);
-    this.route.navigate(["surveylist"]);
+    this.route.navigate(["success"]);
   }
 
   onCancel()

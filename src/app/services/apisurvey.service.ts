@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Survey } from '../models/survey.model';
 import { Answer } from '../models/answer.model';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,7 +21,8 @@ export class ApiSurveyService {
 
   constructor
   (
-    private http: HttpClient
+    private http: HttpClient,
+    private router : Router
   ) { }
 
   getSurveys(): Observable<Survey[]>
@@ -45,10 +47,13 @@ export class ApiSurveyService {
 
   putSurvey(editedSurvey: Survey)
   {
-    return this.http.put<Survey>(this.url + "edit-survey/" + editedSurvey.surveyId, editedSurvey)
+    return this.http.put<{msg : string, survey: Survey}>(this.url + "edit-survey/" + editedSurvey.surveyId, editedSurvey)
                       .subscribe((res)=>
                       {
-                        console.log(res);
+                        if(res.msg = "ERROR - THE SURVEY HAS ANSWERED")
+                        {
+                          this.router.navigate(["404"]);
+                        }
                       });
   }
 

@@ -6,9 +6,12 @@
       </div>
       <div class= "col col-lg-3">
       <div class="hero-button">
-          <a href="/template" class="btn btn-warning px-5">
+          <a *ngIf="!logged" routerLink="/signup" class="btn btn-warning px-5">
               <span style="font-size:40px; color:gray">Get Started</span>
           </a>
+          <a *ngIf="logged" routerLink="/activesurvey" class="btn btn-warning px-5">
+            <span style="font-size:40px; color:gray">Get Started</span>
+        </a>
       </div>
   </div>
   </div>

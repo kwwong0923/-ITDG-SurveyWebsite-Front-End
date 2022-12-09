@@ -39,12 +39,13 @@ export class ActiveSurveyComponent implements OnInit {
       topic: this.surveyForm.value.topic,
       description: this.surveyForm.value.description,
       questions: this.surveyForm.value.questions,
-      surveyId: this.makeid(10)
+      surveyId: this.makeid(10),
+      answered: false
     }
     console.log("onSubmit");
     console.log(this.newSurvey);
     this.apiService.postSurvey(this.newSurvey);
-    this.router.navigate(["surveylist"]);
+    this.router.navigate(["success"]);
   }
 
   addQuestion()

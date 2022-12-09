@@ -12,7 +12,7 @@ import { AuthGuardService } from './services/authguard.serivce';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
 import { SurveyResultComponent } from './components/survey-result/survey-result.component';
-
+import { SuccessPageComponent } from './components/success-page/success-page.component';
 const routes: Routes =
 [
   {path:'home',component:HomeComponent},
@@ -25,6 +25,7 @@ const routes: Routes =
   {path: "user", component: UserInfoComponent},
   {path: "answersurvey/:id", component: SurveyAnswerComponent},
   {path: "resultsurvey/:id", component: SurveyResultComponent},
+  {path: "success", component: SuccessPageComponent},
   {path: '', component:HomeComponent}
 ];
 

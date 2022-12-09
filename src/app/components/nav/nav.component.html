@@ -4,7 +4,7 @@
     <button class="navbar-toggler" type="button"
             data-toggle="collapse"
             data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" 
+            aria-controls="navbarNavAltMarkup"
             aria-expanded="false"
             aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,11 @@
               </li>
 
               <li class="nav-item" *ngIf="logged">
-                <a class="nav-link mx-3 "routerLink="/user"><i class="fa-solid fa-play"></i> User Info</a>
+                <a class="nav-link mx-3 "routerLink="/user"><i class="fa-solid fa-user"></i> User Info</a>
               </li>
 
               <li class="nav-item" *ngIf="logged">
-                <a class="nav-link mx-3 "routerLink="" (click)="logout()"><i class="fa-solid fa-play" ></i> Log Out</a>
+                <a class="nav-link mx-3 "routerLink="" (click)="logout()"><i class="fa-solid fa-xmark" ></i> Log Out</a>
               </li>
 
             <li class="nav-item">

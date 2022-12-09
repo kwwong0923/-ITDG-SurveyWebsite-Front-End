@@ -22,6 +22,7 @@ import { EditSurveyComponent } from './components/edit-survey/edit-survey.compon
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
 import { SurveyResultComponent } from './components/survey-result/survey-result.component';
+import { SuccessPageComponent } from './components/success-page/success-page.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { SurveyResultComponent } from './components/survey-result/survey-result.
     UserInfoComponent,
     SurveyAnswerComponent,
     SurveyResultComponent,
+    SuccessPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -55,6 +55,6 @@ export class SurveyAnswerComponent implements OnInit {
       answers: this.answerForm.value.answers
     }
     this.apiService.postAnswer(this.answer);
-    this.route.navigate(['']);
+    this.route.navigate(['success']);
   }
 }

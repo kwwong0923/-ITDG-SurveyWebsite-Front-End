@@ -1,8 +1,28 @@
-
-<div class="container">
+<div *ngIf="answered">
+  <div class="main">
+    <div class="card">
+      <div
+        style="
+          border-radius: 200px;
+          height: 200px;
+          width: 200px;
+          background: #faf5f5;
+          margin: 0 auto;
+        "
+      >
+        <i class="checkmark">X</i>
+      </div>
+      <h1>Failed</h1>
+      <p>
+        This survey have answered before!
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!answered">
     <div class="row">
       <form [formGroup]="editSurveyForm">
-        <div class="form-group">        
+        <div class="form-group">
           <label for="topic">Topic</label>
           <input
             type="text"
@@ -12,7 +32,7 @@
             placeholder="Your Survey Topic"
           >
         </div>
-  
+
         <div class="form-group">
           <label for="description">Description</label>
           <input
@@ -23,15 +43,15 @@
             placeholder="Description of your survey"
           >
         </div>
-  
+
         <div formArrayName="questions">
-          <div  
+          <div
             class="form-group"
             *ngFor="let question of originalQuestions; let i = index"
           >
           <h6>Q{{i+1}}</h6>
             <input type="text" [value]='originalQuestions[i]' class="form-control" [formControlName]="i">
-            
+
 
           </div>
         </div>
@@ -45,13 +65,13 @@
 
 
   <!-- <div formArrayName="questions">
-    <div  
+    <div
       class="form-group"
       *ngFor="let question of originalQuestions; let i = index"
     >
     <h6>Q{{i+1}}</h6>
       <input type="text" [value]='originalQuestions[i]' class="form-control" [formControlName]="i">
-      
+
 
     </div>
   </div> -->
