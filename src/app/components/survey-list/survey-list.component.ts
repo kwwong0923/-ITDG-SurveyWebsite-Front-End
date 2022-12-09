@@ -25,7 +25,6 @@ export class SurveyListComponent implements OnInit {
     this.apiService
       .getSurveys()
       .subscribe((surveys)=> this.surveys = surveys);
-      console.log(this.surveys);
   }
 
   deleteSurvey(survey: Survey)

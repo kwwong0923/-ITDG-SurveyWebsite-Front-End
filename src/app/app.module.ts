@@ -23,6 +23,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
 import { SurveyResultComponent } from './components/survey-result/survey-result.component';
 import { SuccessPageComponent } from './components/success-page/success-page.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SuccessPageComponent } from './components/success-page/success-page.com
     SurveyAnswerComponent,
     SurveyResultComponent,
     SuccessPageComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
