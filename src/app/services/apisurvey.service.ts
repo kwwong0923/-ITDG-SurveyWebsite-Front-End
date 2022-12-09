@@ -65,4 +65,9 @@ export class ApiSurveyService {
                 console.log(res);
               });
   }
+
+  getAnswerById(id: string): Observable<Answer[]>
+  {
+    return this.http.get<Answer[]>(this.url + "get-answer/" + id);
+  }
 }

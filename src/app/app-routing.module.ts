@@ -11,6 +11,8 @@ import { EditSurveyComponent } from './components/edit-survey/edit-survey.compon
 import { AuthGuardService } from './services/authguard.serivce';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
+import { SurveyResultComponent } from './components/survey-result/survey-result.component';
+
 const routes: Routes =
 [
   {path:'home',component:HomeComponent},
@@ -22,6 +24,7 @@ const routes: Routes =
   {path:"editsurvey/:id", component: EditSurveyComponent, canActivate: [AuthGuardService]},
   {path: "user", component: UserInfoComponent},
   {path: "answersurvey/:id", component: SurveyAnswerComponent},
+  {path: "resultsurvey/:id", component: SurveyResultComponent},
   {path: '', component:HomeComponent}
 ];
 

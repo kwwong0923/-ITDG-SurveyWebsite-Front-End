@@ -21,6 +21,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { EditSurveyComponent } from './components/edit-survey/edit-survey.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.component';
+import { SurveyResultComponent } from './components/survey-result/survey-result.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SurveyAnswerComponent } from './components/survey-answer/survey-answer.
     EditSurveyComponent,
     UserInfoComponent,
     SurveyAnswerComponent,
+    SurveyResultComponent,
   ],
   imports: [
     BrowserModule,
