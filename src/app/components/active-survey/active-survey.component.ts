@@ -40,7 +40,8 @@ export class ActiveSurveyComponent implements OnInit {
       description: this.surveyForm.value.description,
       questions: this.surveyForm.value.questions,
       surveyId: this.makeid(10),
-      answered: false
+      answered: false,
+      counter: 0
     }
     console.log("onSubmit");
     console.log(this.newSurvey);

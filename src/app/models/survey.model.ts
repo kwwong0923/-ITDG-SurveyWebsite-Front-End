@@ -4,6 +4,7 @@ export interface Survey
     description: string,
     questions: [],
     surveyId: string,
-    answered: boolean
+    answered: boolean,
+    counter: number
 }
 

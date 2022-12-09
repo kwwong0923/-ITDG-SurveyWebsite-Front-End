@@ -64,6 +64,7 @@ export class EditSurveyComponent implements OnInit {
       questions: this.editSurveyForm.value.questions,
       surveyId: this.originalSurveyId,
       answered: false,
+      counter: 0
     }
     console.log(this.editedSurvey);
     this.apiService.putSurvey(this.editedSurvey);
