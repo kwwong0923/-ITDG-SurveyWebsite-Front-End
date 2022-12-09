@@ -35,8 +35,11 @@ export class SurveyResultComponent implements OnInit {
         console.log(result);
         this.survey = result;
       })
+  }
 
-
+  printResult()
+  {
+    window.print();
   }
 
 }
