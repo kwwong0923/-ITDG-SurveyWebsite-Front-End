@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ApiSurveyService {
-  private url = "http://localhost:3201/api/";
+  private url = "https://itdg-back-end.herokuapp.com/api/";
 
   constructor
   (
